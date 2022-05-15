@@ -1,9 +1,9 @@
-package com.example.cryptsw;
+package menuGUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class menuController {
     @FXML
     private Label welcomeText;
 
