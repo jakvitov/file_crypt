@@ -14,6 +14,7 @@ public class cryptCentral {
     //Current loaded key used for encryption
     private SecretKey currentKey;
     private final String suffix = ".key";
+    private final String cyperAlgo = "AES/CBC/PKCS5PADDING";
 
     public cryptCentral(){
         currentKey = null;
@@ -22,7 +23,7 @@ public class cryptCentral {
     //Given a path to the serialized key, load it from the file
     //If not successfull return false
     public boolean loadKey(String filePath){
-        File keyFile = new File(filePath);
+        File keyFile = new File(filePath + suffix);
         if (keyFile.canRead() == false){
             System.out.println("Cannot read from key file!");
             return false;
@@ -69,5 +70,12 @@ public class cryptCentral {
         return true;
     }
 
+   //Create return initialization vector for the AES encr. algo as a byte array and save it to a config. file
+    public byte[] createInitializationVector(){
+        byte[] initVector = new byte[16];
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.nextBytes(initVector);
+        return initVector;
+    }
 
 }

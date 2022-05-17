@@ -1,5 +1,7 @@
 package menuCLI;
 
+import cryptFunctions.cryptCentral;
+
 import java.io.File;
 
 /**
@@ -24,6 +26,10 @@ public class clientInterface {
     }
 
     public static void main(String[] args) {
+        cryptCentral crypt = new cryptCentral();
+        crypt.generateNewKey("eliska");
+        System.out.println(crypt.loadKey("eliska"));
+
         clientInterface clientInterface = new clientInterface();
         clientInterface.printDirectory();
 
