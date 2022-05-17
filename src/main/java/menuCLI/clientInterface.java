@@ -21,13 +21,19 @@ public class clientInterface {
                 System.out.println("- /" + i + " -> Available key");
                 continue;
             }
+            else if (i.endsWith(".vec")){
+                System.out.println("- /" + i + " -> Available vector");
+                continue;
+            }
             System.out.println("- /" + i);
         }
     }
 
     public static void main(String[] args) {
         cryptCentral crypt = new cryptCentral();
-        crypt.generateNewKey("eliska");
+        if (crypt.generateKeyVecPair("eliska")){
+            System.out.println("Error while creating the Key - Vector pair.");
+        }
         System.out.println(crypt.loadKey("eliska"));
 
         clientInterface clientInterface = new clientInterface();

@@ -14,6 +14,7 @@ public class cryptCentral {
     //Current loaded key used for encryption
     private SecretKey currentKey;
     private final String suffix = ".key";
+    private final String vectorSuffix = ".vec";
     private final String cyperAlgo = "AES/CBC/PKCS5PADDING";
 
     public cryptCentral(){
@@ -76,6 +77,45 @@ public class cryptCentral {
         SecureRandom secureRandom = new SecureRandom();
         secureRandom.nextBytes(initVector);
         return initVector;
+    }
+
+    //Save initVector as byte[]
+    public boolean saveInitVector(byte[] initVector, String targetName){
+        try {
+            ObjectOutputStream ooe = new ObjectOutputStream(new FileOutputStream(targetName + vectorSuffix));
+            ooe.writeObject(initVector);
+        }
+        catch (IOException IOE){
+            System.out.println("Error while crating the initialization vector file.");
+            return false;
+        }
+        return true;
+    }
+
+    //Generate new key and initialization vector and save them to the targetName file
+    //Check of the keys of this name already exist to prevent from overwriting them
+    public boolean generateKeyVecPair(String targetName){
+
+        File target = new File(targetName + suffix);
+        if (target.exists()){
+            System.out.println("Key of this name already exists!");
+            return false;
+        }
+
+        target = new File(targetName + vectorSuffix);
+        if (target.exists()){
+            System.out.println("Vector of this name already exists!");
+            return false;
+        }
+
+        if (generateNewKey(targetName) == false ){
+            return false;
+        }
+        byte [] iVector = createInitializationVector();
+        if (saveInitVector(iVector, targetName)){
+            return false;
+        }
+        return true;
     }
 
 }
