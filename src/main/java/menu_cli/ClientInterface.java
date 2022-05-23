@@ -1,8 +1,7 @@
 package menu_cli;
 
 import crypt_functions.CryptKey;
-import crypt_functions.cryptCentral;
-import crypt_functions.keyFactory;
+import crypt_functions.KeyFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  * A basic console interface for the application
  */
 
-public class clientInterface {
+public class ClientInterface {
 
     private File currentDirectory = new File("./");
 
@@ -35,7 +34,7 @@ public class clientInterface {
     }
 
     public static void main(String[] args) {
-        keyFactory keyFactory = new keyFactory();
+        KeyFactory keyFactory = new KeyFactory();
         CryptKey key;
         try {
             key = keyFactory.generateKey();
@@ -59,7 +58,7 @@ public class clientInterface {
             return;
         }
 
-        clientInterface clientInterface = new clientInterface();
+        ClientInterface clientInterface = new ClientInterface();
         clientInterface.printDirectory();
 
     }

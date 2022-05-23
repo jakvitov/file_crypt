@@ -8,15 +8,15 @@ import java.security.NoSuchAlgorithmException;
  * A factory for crating new encryption keys
  */
 
-public class keyFactory {
+public class KeyFactory {
 
     private final String suffix = ".key";
 
-    public keyFactory(){}
+    public KeyFactory(){}
 
     /** Generate new key and return it */
     public CryptKey generateKey() throws NoSuchAlgorithmException {
-        cryptCentral central = new cryptCentral();
+        CryptCentral central = new CryptCentral();
         return central.generateKeyVecPair();
     }
 

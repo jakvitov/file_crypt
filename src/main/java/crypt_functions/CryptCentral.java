@@ -2,7 +2,6 @@ package crypt_functions;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.io.*;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
@@ -10,7 +9,7 @@ import java.security.SecureRandom;
  * A class used to encrypt, decrypt files and generate new secret keys
  */
 
-public class cryptCentral {
+public class CryptCentral {
 
     private final String cyperAlgo = "AES/CBC/PKCS5PADDING";
 
