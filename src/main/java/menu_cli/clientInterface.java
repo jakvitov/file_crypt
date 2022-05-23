@@ -1,8 +1,13 @@
-package menuCLI;
+package menu_cli;
 
-import cryptFunctions.cryptCentral;
+import crypt_functions.CryptKey;
+import crypt_functions.cryptCentral;
+import crypt_functions.keyFactory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * A basic console interface for the application
@@ -30,11 +35,29 @@ public class clientInterface {
     }
 
     public static void main(String[] args) {
-        cryptCentral crypt = new cryptCentral();
-        if (crypt.generateKeyVecPair("eliska")){
-            System.out.println("Error while creating the Key - Vector pair.");
+        keyFactory keyFactory = new keyFactory();
+        CryptKey key;
+        try {
+            key = keyFactory.generateKey();
+            keyFactory.saveKey(key, "klic");
+            keyFactory.loadKey("klic");
         }
-        System.out.println(crypt.loadKey("eliska"));
+        catch (NoSuchAlgorithmException NSAE){
+            System.out.println("Algorithm not found!");
+            return;
+        }
+        catch (ClassNotFoundException CNFE){
+            System.out.println("Class not found!");
+            return;
+        }
+        catch (FileNotFoundException FNFE){
+            System.out.println("File not found!");
+            return;
+        }
+        catch (IOException IOE){
+            System.out.println("Error while saving the key.");
+            return;
+        }
 
         clientInterface clientInterface = new clientInterface();
         clientInterface.printDirectory();
