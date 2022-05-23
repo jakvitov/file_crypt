@@ -2,10 +2,16 @@ package menu_cli;
 
 import crypt_functions.CryptKey;
 import crypt_functions.KeyFactory;
+import encryption.FileEncrypt;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 /**
@@ -35,18 +41,24 @@ public class ClientInterface {
 
     public static void main(String[] args) {
         KeyFactory keyFactory = new KeyFactory();
+        FileEncrypt fEncrypt = new FileEncrypt();
         CryptKey key;
         try {
-            key = keyFactory.generateKey();
-            keyFactory.saveKey(key, "klic");
-            keyFactory.loadKey("klic");
-        }
-        catch (NoSuchAlgorithmException NSAE){
-            System.out.println("Algorithm not found!");
-            return;
+            key = keyFactory.loadKey("klic");
+            fEncrypt.encryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText1", key);
+            fEncrypt.decryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText1", key);
         }
         catch (ClassNotFoundException CNFE){
             System.out.println("Class not found!");
+            return;
+        }
+        catch (InvalidAlgorithmParameterException | NoSuchPaddingException  | IllegalBlockSizeException
+                | BadPaddingException | NoSuchAlgorithmException NSAE){
+            System.out.println("Error while decrypting the file!");
+            return;
+        }
+        catch (InvalidKeyException IKE){
+            System.out.println("Wrong key!");
             return;
         }
         catch (FileNotFoundException FNFE){
