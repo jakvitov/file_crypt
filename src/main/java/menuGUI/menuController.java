@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -52,6 +53,9 @@ public class menuController {
 
     @FXML
     private MenuItem encryptKey;
+
+    @FXML
+    private MenuItem dirEncryptKey;
 
     @FXML
     private Menu decryption;
@@ -113,7 +117,7 @@ public class menuController {
             return;
         }
         FileChooser fileChoser = new FileChooser();
-        fileChoser.setTitle("Load encrypted document or a directory");
+        fileChoser.setTitle("Load document to encrypt");
         File chosen = fileChoser.showOpenDialog((Stage) loadedLabel.getScene().getWindow());
         if (chosen != null){
             try {
@@ -138,7 +142,7 @@ public class menuController {
             return;
         }
         FileChooser fileChoser = new FileChooser();
-        fileChoser.setTitle("Load encrypted document or a directory");
+        fileChoser.setTitle("Load encrypted document");
         File chosen = fileChoser.showOpenDialog((Stage) loadedLabel.getScene().getWindow());
         if (chosen != null){
             try {
@@ -153,6 +157,31 @@ public class menuController {
                 return;
             }
             fireConfirm(chosen.getName().toString() + " has been decrypted", "Success");
+        }
+    }
+
+    @FXML
+    protected void dirEncryptAction(){
+        if (backend.isKeyLoaded() == false){
+            fireAlert("No key is loaded. Load a new key or ecrypt with pin.", "No loaded key error");
+            return;
+        }
+        DirectoryChooser fileChoser = new DirectoryChooser();
+        fileChoser.setTitle("Load encrypted document or a directory");
+        File chosen = fileChoser.showDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen != null){
+            try {
+                backend.encryptDirectory(chosen.toPath());
+            }
+            catch (NoSuchAlgorithmException | IOException IOE){
+                fireAlert("Cannot read from the directory.", "Error");
+                return;
+            }
+            catch (Exception e){
+                fireAlert("Wrong key!", "Error");
+                return;
+            }
+            fireConfirm(chosen.getName().toString() + " has been encrypted", "Success");
         }
     }
 

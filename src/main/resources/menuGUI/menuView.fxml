@@ -17,13 +17,15 @@
         <menus>
           <Menu fx:id="encryption" mnemonicParsing="false" text="Encryption">
             <items>
-                  <MenuItem fx:id="encryptKey" mnemonicParsing="false" onAction="#keyEncryptAction" text="Encrypt with key" />
+                  <MenuItem fx:id="encryptKey" mnemonicParsing="false" onAction="#keyEncryptAction" text="Encrypt file with key" />
+                  <MenuItem fx:id="dirEncryptKey" mnemonicParsing="false" onAction="#dirEncryptAction" text="Encrypt directory with key" />
               <MenuItem mnemonicParsing="false" text="Encrypt with pin" />
             </items>
           </Menu>
           <Menu fx:id="decryption" mnemonicParsing="false" text="Decryption">
             <items>
-              <MenuItem fx:id="decryptKey" mnemonicParsing="false" onAction="#decryptKeyAction" text="Decrypt with key" />
+              <MenuItem fx:id="decryptKey" mnemonicParsing="false" onAction="#decryptKeyAction" text="Decrypt file with key" />
+                  <MenuItem mnemonicParsing="false" text="Decrypt directory with key" />
                   <MenuItem mnemonicParsing="false" text="Decrypt with pin" />
             </items>
           </Menu>
