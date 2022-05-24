@@ -63,6 +63,9 @@ public class menuController {
     @FXML
     private MenuItem decryptKey;
 
+    @FXML
+    private MenuItem dirDecryptKey;
+
     public menuController(){
         backend = new ControllBackend();
     }
@@ -167,7 +170,7 @@ public class menuController {
             return;
         }
         DirectoryChooser fileChoser = new DirectoryChooser();
-        fileChoser.setTitle("Load encrypted document or a directory");
+        fileChoser.setTitle("Load directory to encrypt");
         File chosen = fileChoser.showDialog((Stage) loadedLabel.getScene().getWindow());
         if (chosen != null){
             try {
@@ -182,6 +185,31 @@ public class menuController {
                 return;
             }
             fireConfirm(chosen.getName().toString() + " has been encrypted", "Success");
+        }
+    }
+
+    @FXML
+    protected void dirDecryptKeyAction(){
+        if (backend.isKeyLoaded() == false){
+            fireAlert("No key is loaded. Load a new key or ecrypt with pin.", "No loaded key error");
+            return;
+        }
+        DirectoryChooser fileChoser = new DirectoryChooser();
+        fileChoser.setTitle("Load encrypted directory");
+        File chosen = fileChoser.showDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen != null){
+            try {
+                backend.decrpytDirectory(chosen.toPath());
+            }
+            catch (NoSuchAlgorithmException | IOException IOE){
+                fireAlert("Cannot read from the directory.", "Error");
+                return;
+            }
+            catch (Exception e){
+                fireAlert("Wrong key!", "Error");
+                return;
+            }
+            fireConfirm(chosen.getName().toString() + " has been decrpyted", "Success");
         }
     }
 

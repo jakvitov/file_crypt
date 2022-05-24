@@ -76,4 +76,11 @@ public class ControllBackend {
         this.dirEncrypt.encryptDirectory(directory, this.scopeKey);
     }
 
+    public void decrpytDirectory(Path directory) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
+            IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
+            InvalidKeyException {
+        this.dirEncrypt.decryptDirectory(directory, this.scopeKey);
+    }
+
+
 }

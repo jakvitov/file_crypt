@@ -25,7 +25,7 @@
           <Menu fx:id="decryption" mnemonicParsing="false" text="Decryption">
             <items>
               <MenuItem fx:id="decryptKey" mnemonicParsing="false" onAction="#decryptKeyAction" text="Decrypt file with key" />
-                  <MenuItem mnemonicParsing="false" text="Decrypt directory with key" />
+                  <MenuItem fx:id="dirDecryptKey" mnemonicParsing="false" onAction="#dirDecryptKeyAction" text="Decrypt directory with key" />
                   <MenuItem mnemonicParsing="false" text="Decrypt with pin" />
             </items>
           </Menu>
