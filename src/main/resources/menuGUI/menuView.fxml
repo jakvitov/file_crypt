@@ -23,7 +23,7 @@
           </Menu>
           <Menu fx:id="decryption" mnemonicParsing="false" text="Decryption">
             <items>
-              <MenuItem mnemonicParsing="false" text="Decrypt with key" />
+              <MenuItem fx:id="decryptKey" mnemonicParsing="false" onAction="#decryptKeyAction" text="Decrypt with key" />
                   <MenuItem mnemonicParsing="false" text="Decrypt with pin" />
             </items>
           </Menu>

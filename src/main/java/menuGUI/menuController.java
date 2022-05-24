@@ -53,6 +53,12 @@ public class menuController {
     @FXML
     private MenuItem encryptKey;
 
+    @FXML
+    private Menu decryption;
+
+    @FXML
+    private MenuItem decryptKey;
+
     public menuController(){
         backend = new ControllBackend();
     }
@@ -72,7 +78,7 @@ public class menuController {
                         "in the given directory", "Error");
                 return;
             }
-            fireAlert("Key " + chosen.getName() + ".key " + " sucessfully saved", "Success");
+            fireConfirm("Key " + chosen.getName() + ".key " + " sucessfully saved", "Success");
         }
     }
 
@@ -91,9 +97,8 @@ public class menuController {
                 fireAlert("Error while loading, damaged key.", "Error");
                 return;
             }
+            loadedLabel.setText("Loaded: " + chosen.getName().toString());
         }
-        loadedLabel.setText("Loaded: " + chosen.getName().toString());
-
     }
 
     @FXML
@@ -123,6 +128,31 @@ public class menuController {
                 return;
             }
             fireConfirm(chosen.getName().toString() + " has been encrypted", "Success");
+        }
+    }
+
+    @FXML
+    protected void decryptKeyAction(){
+        if (backend.isKeyLoaded() == false){
+            fireAlert("No key is loaded. Load a new key or ecrypt with pin.", "No loaded key error");
+            return;
+        }
+        FileChooser fileChoser = new FileChooser();
+        fileChoser.setTitle("Load encrypted document or a directory");
+        File chosen = fileChoser.showOpenDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen != null){
+            try {
+                backend.decryptFile(chosen.toPath());
+            }
+            catch (NoSuchAlgorithmException | IOException IOE){
+                fireAlert("Cannot read from the file.", "Error");
+                return;
+            }
+            catch (Exception e){
+                fireAlert("Wrong key!", "Error");
+                return;
+            }
+            fireConfirm(chosen.getName().toString() + " has been decrypted", "Success");
         }
     }
 

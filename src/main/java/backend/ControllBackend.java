@@ -64,4 +64,10 @@ public class ControllBackend {
         this.fEncrypt.encryptFile(file.toAbsolutePath().toString(), this.scopeKey);
     }
 
+    public void decryptFile(Path file) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
+            IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
+            InvalidKeyException {
+        this.fEncrypt.decryptFile(file.toAbsolutePath().toString(), this.scopeKey);
+    }
+
 }
