@@ -17,7 +17,7 @@
         <menus>
           <Menu fx:id="encryption" mnemonicParsing="false" text="Encryption">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Encrypt with key" />
+                  <MenuItem fx:id="encryptKey" mnemonicParsing="false" onAction="#keyEncryptAction" text="Encrypt with key" />
               <MenuItem mnemonicParsing="false" text="Encrypt with pin" />
             </items>
           </Menu>

@@ -2,9 +2,18 @@ package backend;
 
 import crypt_functions.CryptKey;
 import crypt_functions.KeyFactory;
+import encryption.DirectoryEncrypt;
+import encryption.FileEncrypt;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
@@ -13,9 +22,13 @@ public class ControllBackend {
 
     private KeyFactory keyFactory;
     private CryptKey scopeKey;
+    private FileEncrypt fEncrypt;
+    private DirectoryEncrypt dirEncrypt;
 
     public ControllBackend() {
         this.keyFactory = new KeyFactory();
+        this.fEncrypt = new FileEncrypt();
+        this.dirEncrypt = new DirectoryEncrypt();
     }
 
     public void generateKey() throws NoSuchAlgorithmException {
@@ -34,11 +47,21 @@ public class ControllBackend {
         this.scopeKey =  this.keyFactory.loadKey(loadPath.toAbsolutePath().toString());
     }
 
+    public String loadManual() throws IOException {
+        return new String(Files.readAllBytes(Paths.get("src/main/resources/text/manual.txt")));
+    }
+
     public boolean isKeyLoaded(){
         if (this.scopeKey == null) {
             return false;
         }
         return true;
+    }
+
+    public void encryptFile(Path file) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
+            IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
+            InvalidKeyException {
+        this.fEncrypt.encryptFile(file.toAbsolutePath().toString(), this.scopeKey);
     }
 
 }
