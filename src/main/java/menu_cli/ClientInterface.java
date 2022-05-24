@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * A basic console interface for the application
@@ -43,17 +44,14 @@ public class ClientInterface {
         KeyFactory keyFactory = new KeyFactory();
         FileEncrypt fEncrypt = new FileEncrypt();
         CryptKey key;
+        CryptKey key2;
         try {
-            key = keyFactory.loadKey("klic");
-            fEncrypt.encryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText1", key);
+            key = keyFactory.generateKey("1234");
             fEncrypt.decryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText1", key);
-        }
-        catch (ClassNotFoundException CNFE){
-            System.out.println("Class not found!");
-            return;
+            fEncrypt.decryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText2", key);
         }
         catch (InvalidAlgorithmParameterException | NoSuchPaddingException  | IllegalBlockSizeException
-                | BadPaddingException | NoSuchAlgorithmException NSAE){
+                | BadPaddingException | NoSuchAlgorithmException | InvalidKeySpecException IKSE){
             System.out.println("Error while decrypting the file!");
             return;
         }

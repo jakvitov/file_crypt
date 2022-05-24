@@ -3,6 +3,7 @@ package crypt_functions;
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * A factory for crating new encryption keys
@@ -18,6 +19,12 @@ public class KeyFactory {
     public CryptKey generateKey() throws NoSuchAlgorithmException {
         CryptCentral central = new CryptCentral();
         return central.generateKeyVecPair();
+    }
+
+    /** Generate new key from the given pin */
+    public CryptKey generateKey(String pin) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        CryptCentral central = new CryptCentral();
+        return central.generateKeyVecPair(pin);
     }
 
     /** Save key into the given file */

@@ -26,5 +26,9 @@ public class CryptKey implements Serializable {
         return initVector;
     }
 
+    public String toString(){
+        return new String(key.toString() + new String(initVector));
+    }
+
 
 }
