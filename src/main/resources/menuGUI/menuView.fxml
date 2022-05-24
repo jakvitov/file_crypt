@@ -30,7 +30,7 @@
           <Menu fx:id="keys" mnemonicParsing="false" text="Keys">
             <items>
               <MenuItem fx:id="genKey" mnemonicParsing="false" onAction="#generateKey" text="Generate new key" />
-                  <MenuItem mnemonicParsing="false" text="Load new key" />
+                  <MenuItem fx:id="loadKey" mnemonicParsing="false" onAction="#loadKeyAction" text="Load new key" />
             </items>
           </Menu>
             <Menu fx:id="help" mnemonicParsing="false" text="Help">

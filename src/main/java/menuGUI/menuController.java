@@ -33,6 +33,9 @@ public class menuController {
     @FXML
     private MenuItem genKey;
 
+    @FXML
+    private MenuItem loadKey;
+
     public menuController(){
         backend = new ControllBackend();
     }
@@ -49,7 +52,29 @@ public class menuController {
             }
             catch (NoSuchAlgorithmException | IOException NSAE){
                 fireAlert("Error while creating the key, check if you have write permission \n " +
-                        "in the given directory");
+                        "in the given directory", "Error");
+                return;
+            }
+            fireAlert("Key " + chosen.getName() + ".key " + " sucessfully saved", "Success");
+        }
+    }
+
+    @FXML
+    protected void loadKeyAction(){
+        FileChooser fileChoser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Key files (*.key)", "*.key");
+        fileChoser.getExtensionFilters().add(extFilter);
+        fileChoser.setTitle("Load key");
+        File chosen = fileChoser.showOpenDialog((Stage) loadedLabel.getScene().getWindow());
+
+        if (chosen != null){
+            try {
+                System.out.println(chosen.getAbsolutePath().toString());
+                backend.loadKey(chosen.toPath());
+            }
+            catch (ClassNotFoundException | IOException NSAE){
+                fireAlert("Error while loading, damaged key.", "Error");
+                return;
             }
         }
 
@@ -61,10 +86,10 @@ public class menuController {
     }
 
     /** Fire a basic alert with given text*/
-    public void fireAlert(String text){
+    public void fireAlert(String text, String title){
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setAlertType(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Error");
+        alert.setTitle(title);
         alert.setContentText(text);
         alert.show();
     }

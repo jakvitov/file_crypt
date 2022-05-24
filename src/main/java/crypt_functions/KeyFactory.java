@@ -45,7 +45,7 @@ public class KeyFactory {
     }
     /** Load the key from the given file*/
     public CryptKey loadKey(String fileName) throws IOException, ClassNotFoundException {
-        String finalName = fileName + this.suffix;
+        String finalName = fileName;
         File target = new File(finalName);
         if (target.exists() == false){
             throw new FileNotFoundException();
