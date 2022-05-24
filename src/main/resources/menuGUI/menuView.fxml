@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="menuGUI.menuController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
-
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuGUI.menuController">
+   <children>
+      <MenuBar fx:id="menuBar">
+        <menus>
+          <Menu fx:id="encryption" mnemonicParsing="false" text="Encryption">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Encrypt with key" />
+              <MenuItem mnemonicParsing="false" text="Encrypt with pin" />
+            </items>
+          </Menu>
+          <Menu fx:id="decryption" mnemonicParsing="false" text="Decryption">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Decrypt with key" />
+                  <MenuItem mnemonicParsing="false" text="Decrypt with pin" />
+            </items>
+          </Menu>
+          <Menu fx:id="keys" mnemonicParsing="false" text="Keys">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Generate new key" />
+                  <MenuItem mnemonicParsing="false" text="Load new key" />
+            </items>
+          </Menu>
+            <Menu fx:id="help" mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem fx:id="showHelp" mnemonicParsing="false" onAction="#showHelp" text="Action 1" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <GridPane prefHeight="108.0" prefWidth="700.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <center>
+                  <Label fx:id="caesarLogo" alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="186.0" text="Caesar_logo" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+         </children>
+      </GridPane>
+      <Label fx:id="loadedLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="165.0" prefWidth="753.0" text="No currently loaded key.">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+   </children>
 </VBox>
