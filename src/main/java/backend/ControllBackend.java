@@ -34,4 +34,11 @@ public class ControllBackend {
         this.scopeKey =  this.keyFactory.loadKey(loadPath.toAbsolutePath().toString());
     }
 
+    public boolean isKeyLoaded(){
+        if (this.scopeKey == null) {
+            return false;
+        }
+        return true;
+    }
+
 }

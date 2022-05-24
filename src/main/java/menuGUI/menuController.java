@@ -77,6 +77,7 @@ public class menuController {
                 return;
             }
         }
+        loadedLabel.setText("Loaded: " + chosen.getName().toString());
 
     }
 
