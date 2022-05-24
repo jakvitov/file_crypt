@@ -2,6 +2,7 @@ package menu_cli;
 
 import crypt_functions.CryptKey;
 import crypt_functions.KeyFactory;
+import encryption.DirectoryEncrypt;
 import encryption.FileEncrypt;
 
 import javax.crypto.BadPaddingException;
@@ -10,6 +11,7 @@ import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -41,14 +43,11 @@ public class ClientInterface {
     }
 
     public static void main(String[] args) {
-        KeyFactory keyFactory = new KeyFactory();
-        FileEncrypt fEncrypt = new FileEncrypt();
-        CryptKey key;
-        CryptKey key2;
         try {
-            key = keyFactory.generateKey("1234");
-            fEncrypt.decryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText1", key);
-            fEncrypt.decryptFile("/home/jakub/Java/CryptSw/src/main/tests/testText2", key);
+            KeyFactory keyFactory = new KeyFactory();
+            CryptKey key = keyFactory.generateKey("1234");
+            DirectoryEncrypt dirEncr = new DirectoryEncrypt();
+            dirEncr.decryptDirectory(Path.of("/home/jakub/Java/CryptSw/src/main/tests/test_dir"), key);
         }
         catch (InvalidAlgorithmParameterException | NoSuchPaddingException  | IllegalBlockSizeException
                 | BadPaddingException | NoSuchAlgorithmException | InvalidKeySpecException IKSE){
