@@ -11,10 +11,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import menu_cli.ClientInterface;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -58,6 +60,9 @@ public class menuController {
     private MenuItem dirEncryptKey;
 
     @FXML
+    private MenuItem encrFileWithPin;
+
+    @FXML
     private Menu decryption;
 
     @FXML
@@ -65,6 +70,7 @@ public class menuController {
 
     @FXML
     private MenuItem dirDecryptKey;
+
 
     public menuController(){
         backend = new ControllBackend();
@@ -211,6 +217,20 @@ public class menuController {
             }
             fireConfirm(chosen.getName().toString() + " has been decrpyted", "Success");
         }
+    }
+
+    @FXML
+    protected void encrFileWithPinAction() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage logInWindow = new Stage();
+        logInWindow.setScene(new Scene(root1));
+        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
+        logInWindow.initOwner(primaryStage);
+        logInWindow.setX(primaryStage.getX() + 200);
+        logInWindow.setY(primaryStage.getY() + 100);
+        logInWindow.show();
     }
 
     /** Fire a basic alert with given text*/
