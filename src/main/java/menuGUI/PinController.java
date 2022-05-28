@@ -1,11 +1,17 @@
 package menuGUI;
 
+import backend.ControllBackend;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
+
+import java.util.InputMismatchException;
 
 public class PinController {
+
+    private String enteredPin;
 
     @FXML
     private PasswordField pswdField1;
@@ -24,20 +30,11 @@ public class PinController {
             fireAlert("Given passwords do not match!", "Error");
             return;
         }
-        pswdField1.clear();
-        pswdField2.clear();
+        ControllBackend.enteredPin = secondPswd;
+        Stage primaryStage = (Stage)pswdField1.getScene().getWindow();
+        primaryStage.close();
+        return;
     }
-
-    /** In this method we take the input file and */
-    public void initialize(){
-
-    }
-
-    @FXML
-    protected void confirmAction(){
-
-    }
-
 
     /** Fire a basic alert with given text*/
     public void fireAlert(String text, String title){

@@ -44,7 +44,7 @@
          <bottom>
             <BorderPane prefHeight="77.0" prefWidth="400.0" BorderPane.alignment="CENTER">
                <center>
-                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmAction" prefHeight="51.0" prefWidth="115.0" text="Confirm" BorderPane.alignment="CENTER" />
+                  <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#pswdEntered2" prefHeight="51.0" prefWidth="115.0" text="Confirm" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </bottom>

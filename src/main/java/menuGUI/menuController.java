@@ -23,9 +23,12 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Locale;
 
 public class menuController {
@@ -220,8 +223,18 @@ public class menuController {
     }
 
     @FXML
-    protected void encrFileWithPinAction() throws IOException {
+    protected void encrFileWithPinAction() throws IOException, InvalidAlgorithmParameterException,
+            NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException,
+            InvalidKeySpecException, BadPaddingException, InvalidKeyException {
+        FileChooser fileChoser = new FileChooser();
+        fileChoser.setTitle("Load document to encrypt");
+        File chosen = fileChoser.showOpenDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen == null){
+            return;
+        }
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
+        PinController controller = new PinController();
         Parent root1 = (Parent) fxmlLoader.load();
         Stage logInWindow = new Stage();
         logInWindow.setScene(new Scene(root1));
@@ -230,7 +243,15 @@ public class menuController {
         logInWindow.initOwner(primaryStage);
         logInWindow.setX(primaryStage.getX() + 200);
         logInWindow.setY(primaryStage.getY() + 100);
-        logInWindow.show();
+        logInWindow.showAndWait();
+
+        if (ControllBackend.enteredPin != null){
+            this.backend.encryptFile(chosen.toPath(), this.backend.enteredPin);
+        }
+        else {
+            return;
+        }
+        fireConfirm("File successfully encrypted.", "Success!");
     }
 
     /** Fire a basic alert with given text*/

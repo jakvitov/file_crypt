@@ -24,6 +24,7 @@ public class ControllBackend {
     private CryptKey scopeKey;
     private FileEncrypt fEncrypt;
     private DirectoryEncrypt dirEncrypt;
+    public static String enteredPin;
 
     public ControllBackend() {
         this.keyFactory = new KeyFactory();
@@ -62,6 +63,13 @@ public class ControllBackend {
             IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
             InvalidKeyException {
         this.fEncrypt.encryptFile(file.toAbsolutePath().toString(), this.scopeKey);
+    }
+
+    public void encryptFile(Path file, String pin) throws NoSuchAlgorithmException,
+            InvalidKeySpecException, InvalidAlgorithmParameterException, NoSuchPaddingException,
+            IllegalBlockSizeException, IOException, BadPaddingException, InvalidKeyException {
+        CryptKey key = this.keyFactory.generateKey(pin);
+        this.fEncrypt.encryptFile(file.toAbsolutePath().toString(), key);
     }
 
     public void decryptFile(Path file) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
