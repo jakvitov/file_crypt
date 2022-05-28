@@ -246,7 +246,15 @@ public class menuController {
         logInWindow.showAndWait();
 
         if (ControllBackend.enteredPin != null){
-            this.backend.encryptFile(chosen.toPath(), this.backend.enteredPin);
+            try {
+                this.backend.encryptFile(chosen.toPath(), this.backend.enteredPin);
+            }
+            catch (IOException IOE){
+                fireAlert("Cannot read the given file!", "Error");
+            }
+            catch (Exception e){
+                fireAlert("Error while encrypting the file", "Error");
+            }
         }
         else {
             return;
