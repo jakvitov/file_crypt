@@ -74,6 +74,9 @@ public class menuController {
     @FXML
     private MenuItem dirDecryptKey;
 
+    @FXML
+    private MenuItem decrFileWithPin;
+
 
     public menuController(){
         backend = new ControllBackend();
@@ -232,7 +235,6 @@ public class menuController {
         if (chosen == null){
             return;
         }
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
         PinController controller = new PinController();
         Parent root1 = (Parent) fxmlLoader.load();
@@ -260,6 +262,45 @@ public class menuController {
             return;
         }
         fireConfirm("File successfully encrypted.", "Success!");
+    }
+
+    @FXML
+    protected void decrFileWithPinAction() throws IOException {
+        FileChooser fileChoser = new FileChooser();
+        fileChoser.setTitle("Load document to decrypt");
+        File chosen = fileChoser.showOpenDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen == null){
+            return;
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
+        PinController controller = new PinController();
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage logInWindow = new Stage();
+        logInWindow.setScene(new Scene(root1));
+        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
+        logInWindow.initOwner(primaryStage);
+        logInWindow.setX(primaryStage.getX() + 200);
+        logInWindow.setY(primaryStage.getY() + 100);
+        logInWindow.showAndWait();
+
+        if (ControllBackend.enteredPin != null){
+            try {
+                this.backend.decryptFile(chosen.toPath(), this.backend.enteredPin);
+            }
+            catch (NoSuchAlgorithmException | IOException IOE){
+                fireAlert("Cannot read from the directory.", "Error");
+                return;
+            }
+            catch (Exception e){
+                fireAlert("Wrong key!", "Error");
+                return;
+            }
+        }
+        else {
+            return;
+        }
+        fireConfirm("File successfully decrypted.", "Success!");
     }
 
     /** Fire a basic alert with given text*/
