@@ -66,6 +66,9 @@ public class menuController {
     private MenuItem encrFileWithPin;
 
     @FXML
+    private MenuItem dirEncryptWithPin;
+
+    @FXML
     private Menu decryption;
 
     @FXML
@@ -76,6 +79,9 @@ public class menuController {
 
     @FXML
     private MenuItem decrFileWithPin;
+
+    @FXML
+    private MenuItem dirDecryptWithPin;
 
 
     public menuController(){
@@ -301,6 +307,82 @@ public class menuController {
             return;
         }
         fireConfirm("File successfully decrypted.", "Success!");
+    }
+
+    @FXML
+    protected void dirEncryptWithPinAction() throws IOException {
+        DirectoryChooser direChoser = new DirectoryChooser();
+        direChoser.setTitle("Load directory to encrypt");
+        File chosen = direChoser.showDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen == null){
+            return;
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
+        PinController controller = new PinController();
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage logInWindow = new Stage();
+        logInWindow.setScene(new Scene(root1));
+        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
+        logInWindow.initOwner(primaryStage);
+        logInWindow.setX(primaryStage.getX() + 200);
+        logInWindow.setY(primaryStage.getY() + 100);
+        logInWindow.showAndWait();
+
+        if (ControllBackend.enteredPin != null){
+            try {
+                this.backend.encryptDirectory(chosen.toPath(), this.backend.enteredPin);
+            }
+            catch (IOException IOE){
+                fireAlert("Cannot read the given directory!", "Error");
+            }
+            catch (Exception e){
+                fireAlert("Error while encrypting the directory", "Error");
+            }
+        }
+        else {
+            return;
+        }
+        fireConfirm("Directory encrypted.", "Success!");
+    }
+
+    @FXML
+    protected void dirDecryptWithPinAction() throws IOException {
+        DirectoryChooser direChoser = new DirectoryChooser();
+        direChoser.setTitle("Load directory to decrypt");
+        File chosen = direChoser.showDialog((Stage) loadedLabel.getScene().getWindow());
+        if (chosen == null){
+            return;
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
+        PinController controller = new PinController();
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage logInWindow = new Stage();
+        logInWindow.setScene(new Scene(root1));
+        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
+        logInWindow.initOwner(primaryStage);
+        logInWindow.setX(primaryStage.getX() + 200);
+        logInWindow.setY(primaryStage.getY() + 100);
+        logInWindow.showAndWait();
+
+        if (ControllBackend.enteredPin != null){
+            try {
+                this.backend.decrpytDirectory(chosen.toPath(), this.backend.enteredPin);
+            }
+            catch (NoSuchAlgorithmException | IOException IOE){
+                fireAlert("Cannot read from the directory.", "Error");
+                return;
+            }
+            catch (Exception e){
+                fireAlert("Wrong key!", "Error");
+                return;
+            }
+        }
+        else {
+            return;
+        }
+        fireConfirm("Directory successfully decrypted.", "Success!");
     }
 
     /** Fire a basic alert with given text*/

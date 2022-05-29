@@ -20,7 +20,7 @@
                   <MenuItem fx:id="encryptKey" mnemonicParsing="false" onAction="#keyEncryptAction" text="Encrypt file with key" />
                   <MenuItem fx:id="dirEncryptKey" mnemonicParsing="false" onAction="#dirEncryptAction" text="Encrypt directory with key" />
               <MenuItem fx:id="encrFileWithPin" mnemonicParsing="false" onAction="#encrFileWithPinAction" text="Encrypt file with pin" />
-                  <MenuItem mnemonicParsing="false" text="Encrypt directory with pin" />
+                  <MenuItem fx:id="dirEncryptWithPin" mnemonicParsing="false" onAction="#dirEncryptWithPinAction" text="Encrypt directory with pin" />
             </items>
           </Menu>
           <Menu fx:id="decryption" mnemonicParsing="false" text="Decryption">
@@ -28,7 +28,7 @@
               <MenuItem fx:id="decryptKey" mnemonicParsing="false" onAction="#decryptKeyAction" text="Decrypt file with key" />
                   <MenuItem fx:id="dirDecryptKey" mnemonicParsing="false" onAction="#dirDecryptKeyAction" text="Decrypt directory with key" />
                   <MenuItem fx:id="decrFileWithPin" mnemonicParsing="false" onAction="#decrFileWithPinAction" text="Decrypt file with pin" />
-                  <MenuItem mnemonicParsing="false" text="Decrypt directory with pin" />
+                  <MenuItem fx:id="dirDecryptWithPin" mnemonicParsing="false" onAction="#dirDecryptWithPinAction" text="Decrypt directory with pin" />
             </items>
           </Menu>
           <Menu fx:id="keys" mnemonicParsing="false" text="Keys">

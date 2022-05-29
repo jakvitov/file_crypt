@@ -91,11 +91,24 @@ public class ControllBackend {
         this.dirEncrypt.encryptDirectory(directory, this.scopeKey);
     }
 
+    public void encryptDirectory(Path directory, String pin) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
+            IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
+            InvalidKeyException, InvalidKeySpecException {
+        CryptKey key = this.keyFactory.generateKey(pin);
+        this.dirEncrypt.encryptDirectory(directory, key);
+    }
+
     public void decrpytDirectory(Path directory) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
             IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
             InvalidKeyException {
         this.dirEncrypt.decryptDirectory(directory, this.scopeKey);
     }
 
+    public void decrpytDirectory(Path directory, String pin) throws InvalidAlgorithmParameterException, NoSuchPaddingException,
+            IllegalBlockSizeException, IOException, NoSuchAlgorithmException, BadPaddingException,
+            InvalidKeyException, InvalidKeySpecException {
+        CryptKey key = this.keyFactory.generateKey(pin);
+        this.dirEncrypt.decryptDirectory(directory, key);
+    }
 
 }
