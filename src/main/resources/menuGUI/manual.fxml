@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuGUI.ManualController">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="75.0" prefWidth="600.0" text="Manual">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="335.0" prefWidth="600.0">
+               <children>
+                  <ListView fx:id="manualMenu" prefHeight="330.0" prefWidth="137.0" />
+                  <Label fx:id="manualText" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="332.0" prefWidth="482.0" text="Manual Text" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

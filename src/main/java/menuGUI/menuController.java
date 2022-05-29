@@ -127,8 +127,17 @@ public class menuController {
     }
 
     @FXML
-    protected void showHelp(){
-
+    protected void showHelp() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("manual.fxml"));
+        PinController controller = new PinController();
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
+        stage.initOwner(primaryStage);
+        stage.setX(primaryStage.getX() + 200);
+        stage.setY(primaryStage.getY() + 100);
+        stage.showAndWait();
     }
 
     @FXML
@@ -244,14 +253,14 @@ public class menuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
         PinController controller = new PinController();
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage logInWindow = new Stage();
-        logInWindow.setScene(new Scene(root1));
-        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.initModality(Modality.WINDOW_MODAL);
         Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
-        logInWindow.initOwner(primaryStage);
-        logInWindow.setX(primaryStage.getX() + 200);
-        logInWindow.setY(primaryStage.getY() + 100);
-        logInWindow.showAndWait();
+        stage.initOwner(primaryStage);
+        stage.setX(primaryStage.getX() + 200);
+        stage.setY(primaryStage.getY() + 100);
+        stage.showAndWait();
 
         if (ControllBackend.enteredPin != null){
             try {
@@ -281,14 +290,14 @@ public class menuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
         PinController controller = new PinController();
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage logInWindow = new Stage();
-        logInWindow.setScene(new Scene(root1));
-        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.initModality(Modality.WINDOW_MODAL);
         Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
-        logInWindow.initOwner(primaryStage);
-        logInWindow.setX(primaryStage.getX() + 200);
-        logInWindow.setY(primaryStage.getY() + 100);
-        logInWindow.showAndWait();
+        stage.initOwner(primaryStage);
+        stage.setX(primaryStage.getX() + 200);
+        stage.setY(primaryStage.getY() + 100);
+        stage.showAndWait();
 
         if (ControllBackend.enteredPin != null){
             try {
@@ -320,14 +329,14 @@ public class menuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
         PinController controller = new PinController();
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage logInWindow = new Stage();
-        logInWindow.setScene(new Scene(root1));
-        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.initModality(Modality.WINDOW_MODAL);
         Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
-        logInWindow.initOwner(primaryStage);
-        logInWindow.setX(primaryStage.getX() + 200);
-        logInWindow.setY(primaryStage.getY() + 100);
-        logInWindow.showAndWait();
+        stage.initOwner(primaryStage);
+        stage.setX(primaryStage.getX() + 200);
+        stage.setY(primaryStage.getY() + 100);
+        stage.showAndWait();
 
         if (ControllBackend.enteredPin != null){
             try {
@@ -357,14 +366,14 @@ public class menuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("pinView.fxml"));
         PinController controller = new PinController();
         Parent root1 = (Parent) fxmlLoader.load();
-        Stage logInWindow = new Stage();
-        logInWindow.setScene(new Scene(root1));
-        logInWindow.initModality(Modality.WINDOW_MODAL);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root1));
+        stage.initModality(Modality.WINDOW_MODAL);
         Stage primaryStage = (Stage)loadedLabel.getScene().getWindow();
-        logInWindow.initOwner(primaryStage);
-        logInWindow.setX(primaryStage.getX() + 200);
-        logInWindow.setY(primaryStage.getY() + 100);
-        logInWindow.showAndWait();
+        stage.initOwner(primaryStage);
+        stage.setX(primaryStage.getX() + 200);
+        stage.setY(primaryStage.getY() + 100);
+        stage.showAndWait();
 
         if (ControllBackend.enteredPin != null){
             try {
