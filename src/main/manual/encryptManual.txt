@@ -7,4 +7,4 @@ In order to encrypt a directory with loaded key, chose "Encryption" -> "Encrypt 
 This function uses a currently loaded key, to encrypt the target. This enables you to encrypt a directory,
 for single file encrpytion, you have to use our "Encrypt file with key" method.
 
-The decryption workds exactly the same, just chose "decryption" instead of "encryption".
+The decryption works exactly the same, just chose "decryption" instead of "encryption".

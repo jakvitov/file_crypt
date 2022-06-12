@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +15,7 @@ import java.nio.file.Path;
 public class ManualController {
 
     @FXML
-    private Label manualText;
+    private Text manualText;
 
     @FXML
     private ListView manualMenu;
@@ -25,7 +26,7 @@ public class ManualController {
     public void initialize(){
         manualText.setText(wellcomeText);
         manualMenu.getItems().add("Encryption and Decryption with key.");
-        manualMenu.getItems().add("Encryption and decryption with pin.");
+        manualMenu.getItems().add("Encryption and Decryption with pin.");
         manualMenu.getItems().add("Keys and pins");
         String keyManual = wellcomeText;
         String encryptManual = wellcomeText;
