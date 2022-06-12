@@ -373,6 +373,7 @@ public class menuController {
         stage.initOwner(primaryStage);
         stage.setX(primaryStage.getX() + 200);
         stage.setY(primaryStage.getY() + 100);
+        stage.setResizable(false);
         stage.showAndWait();
 
         if (ControllBackend.enteredPin != null){
