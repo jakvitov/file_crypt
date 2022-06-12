@@ -22,20 +22,26 @@ public class ManualController {
 
     private final String wellcomeText = "Wellcome to the manual. Chose a topic you want to know more about!";
 
+    private final String keyEncrPrompt = "Encryption and decryption with key.";
+
+    private final String pinEncrPrompt = "Encryption and decryption with pin.";
+
+    private final String keyManEncrPrompt = "Keys and pins";
+
     /** We fill the menu list in the initialize method*/
     public void initialize(){
         manualText.setText(wellcomeText);
-        manualMenu.getItems().add("Encryption and Decryption with key.");
-        manualMenu.getItems().add("Encryption and Decryption with pin.");
-        manualMenu.getItems().add("Keys and pins");
+        manualMenu.getItems().add(keyEncrPrompt);
+        manualMenu.getItems().add(pinEncrPrompt);
+        manualMenu.getItems().add(keyManEncrPrompt);
         String keyManual = wellcomeText;
         String encryptManual = wellcomeText;
         String decryptManual = wellcomeText;
         manualText.setText(encryptManual);
         try {
             keyManual = new String(Files.readAllBytes(Path.of("/home/jakub/Java/CryptSw/src/main/manual/keyManual.txt")));
-            encryptManual = new String(Files.readAllBytes(Path.of("/home/jakub/Java/CryptSw/src/main/manual/encryptManual.txt")));
-            decryptManual = new String(Files.readAllBytes(Path.of("/home/jakub/Java/CryptSw/src/main/manual/decryptManual.txt")));
+            encryptManual = new String(Files.readAllBytes(Path.of("/home/jakub/Java/CryptSw/src/main/manual/keyUsageManual.txt")));
+            decryptManual = new String(Files.readAllBytes(Path.of("/home/jakub/Java/CryptSw/src/main/manual/pinManual.txt")));
         }
         catch (IOException IOE){
             fireAlert("Error, some manual files cannot be loaded.", "Error");
@@ -48,9 +54,9 @@ public class ManualController {
             @Override
             public void handle(MouseEvent event) {
                 String choice = (String) manualMenu.getSelectionModel().getSelectedItem();
-                if (choice.equals("Encryption and Decryption with key.")) {
+                if (choice.equals(keyEncrPrompt)) {
                     manualText.setText(finalEncryptManual);
-                } else if (choice.equals("Encryption and decryption with pin.")) {
+                } else if (choice.equals(pinEncrPrompt)) {
                     manualText.setText(finalDecryptManual);
                 }
                 //Keys and pins then

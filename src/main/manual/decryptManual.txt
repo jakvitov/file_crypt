@@ -1,3 +1,0 @@
-In order to encrpyt a file with pin, chose "Encryption" -> "Encrpyt file with pin". Chose a file that you would like to encrypt and enter a pin. The decryption is done in the same way.
-
-In order to encrpyt a file with pin, chose "Encryption" -> "Encrpyt directory with pin". Chose a directory that you would like to encrypt and enter a pin. The decryption is done in the same way.

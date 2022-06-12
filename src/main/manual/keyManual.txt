@@ -1,8 +1,6 @@
-In order to encrypt a file with key, you need to have a generated and loaded valid key for the Caesar app.
-
-In order to generate a key, chose "Key" -> "Generate new key" and select the name and final destination of
+• In order to generate a key, chose "Key" -> "Generate new key" and select the name and final destination of
 your key.
 
-In order to load a key, chose "Key" -> "Load key" and select a valid key to be loaded. You can have always
+• In order to load a key, chose "Key" -> "Load key" and select a valid key to be loaded. You can have always
 only one key loaded at a time, so if you want to switch keys, while encrypting, you have to reload keys.
 Your currently loaded key is displayed in the main menu under the app logo.

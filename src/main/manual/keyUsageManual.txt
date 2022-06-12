@@ -1,10 +1,10 @@
-In order to encrypt a file with loaded key, chose "Encryption" -> "Encrpyt file with key".
+• In order to encrypt a file with loaded key, chose "Encryption" -> "Encrpyt file with key".
 This function uses a currently loaded key, to encrypt the target. This enables you to encrypt a single file,
 for multiple file encrpytion, you have to put them in a directory and use our "Encrypt directory with key"
 method.
 
-In order to encrypt a directory with loaded key, chose "Encryption" -> "Encrypt directory with key".
+• In order to encrypt a directory with loaded key, chose "Encryption" -> "Encrypt directory with key".
 This function uses a currently loaded key, to encrypt the target. This enables you to encrypt a directory,
 for single file encrpytion, you have to use our "Encrypt file with key" method.
 
-The decryption works exactly the same, just chose "decryption" instead of "encryption".
+• The decryption works exactly the same, just chose "decryption" instead of "encryption".
