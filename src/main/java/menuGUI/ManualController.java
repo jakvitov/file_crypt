@@ -19,14 +19,17 @@ public class ManualController {
     @FXML
     private ListView manualMenu;
 
+    private final String wellcomeText = "Wellcome to the manual. Chose a topic you want to know more about!";
+
     /** We fill the menu list in the initialize method*/
     public void initialize(){
+        manualText.setText(wellcomeText);
         manualMenu.getItems().add("Encryption and Decryption with key.");
         manualMenu.getItems().add("Encryption and decryption with pin.");
         manualMenu.getItems().add("Keys and pins");
-        String keyManual = "Error while loading the file";
-        String encryptManual = "Error while loading the file";
-        String decryptManual = "Error while loading the file";
+        String keyManual = wellcomeText;
+        String encryptManual = wellcomeText;
+        String decryptManual = wellcomeText;
         manualText.setText(encryptManual);
         try {
             keyManual = new String(Files.readAllBytes(Path.of("/home/jakub/Java/CryptSw/src/main/manual/keyManual.txt")));
@@ -44,7 +47,6 @@ public class ManualController {
             @Override
             public void handle(MouseEvent event) {
                 String choice = (String) manualMenu.getSelectionModel().getSelectedItem();
-                System.out.println(choice);
                 if (choice.equals("Encryption and Decryption with key.")) {
                     manualText.setText(finalEncryptManual);
                 } else if (choice.equals("Encryption and decryption with pin.")) {
